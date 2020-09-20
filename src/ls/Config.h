@@ -11,7 +11,6 @@ namespace ls
 			json::Object root;
 		public:
 			Config() = default;
-			virtual ~Config() {}
 			void Load(const std::string &pathname);
 	};
 }
