@@ -14,7 +14,7 @@ class TestConfig : public ls::Config
 			char *configPath = getenv("TEST_CONFIG_PATH");
 			if(NULL == configPath)
 				configPath = (char *)"test.conf";
-			Load(configPath);
+			load(configPath);
 			GET_INT(root, "id", id);
 			GET_INT(root, "number", number);
 		}

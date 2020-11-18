@@ -11,7 +11,7 @@ namespace ls
 			json::Object root;
 		public:
 			Config() = default;
-			void Load(const std::string &pathname);
+			void load(const std::string &pathname);
 	};
 }
 

@@ -6,7 +6,7 @@ using namespace std;
 
 namespace ls
 {
-	void Config::Load(const string &pathname)
+	void Config::load(const string &pathname)
 	{
 		string text;
 		if(ReadFullFile(pathname, text) < 0)
