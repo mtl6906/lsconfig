@@ -1,19 +1,22 @@
 #include "ls/Config.h"
-#include "ls/util.h"
-#include "cstdlib"
+#include "ls/file/API.h"
+#include "ls/io/Factory.h"
 
 using namespace std;
 
 namespace ls
 {
-	void Config::load(const string &pathname)
+	Config::~Config()
 	{
-		string text;
-		if(ReadFullFile(pathname, text) < 0)
-		{
-			fprintf(stderr, "no config\n");
-			exit(1);
-		}
-		root.ParseFrom(text);
+	
+	}
+
+	void Config::load()
+	{
+		auto configFile = file::api.get(getConfigPath());
+		io::InputStream *in = io::factory.makeInputStream(configFile -> getReader());
+		in -> read();
+		root = json::api.decode(in -> split());
+		init();
 	}
 }

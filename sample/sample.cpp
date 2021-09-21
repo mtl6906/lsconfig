@@ -2,7 +2,7 @@
 #include "iostream"
 
 using namespace std;
-using ls::json::Int;
+using namespace ls;
 
 class TestConfig : public ls::Config
 {
@@ -11,13 +11,23 @@ class TestConfig : public ls::Config
 		int number;
 		TestConfig()
 		{
+			load();
+		}
+	protected:
+		std::string getConfigPath() override
+		{
 			char *configPath = getenv("TEST_CONFIG_PATH");
 			if(NULL == configPath)
 				configPath = (char *)"test.conf";
-			load(configPath);
-			GET_INT(root, "id", id);
-			GET_INT(root, "number", number);
+			return configPath;	
 		}
+
+		void init() override
+		{
+			json::api.get(root, "id", id);
+			json::api.get(root, "number", number);
+		}
+
 };
 
 int main()
