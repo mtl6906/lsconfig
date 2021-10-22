@@ -12,7 +12,8 @@ include_directories(include)
 add_library(lsconfig SHARED ${SRC})
 add_executable(testcase ${SRC} ${SRC_SAMPLE})
 
-target_link_libraries(testcase lsjson lsitem lscopyableitem lsbuffer lscstring lsexception lsio lsfile lslogger lstime)
+link_directories(/usr/local/lib)
+target_link_libraries(testcase lsfile lsjson lsitem lscopyableitem lsbuffer lscstring lsexception lsio lslogger lstime)
 
 install(TARGETS lsconfig DESTINATION lib)
 
